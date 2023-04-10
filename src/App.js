@@ -1,21 +1,24 @@
-import {Route, Routes} from 'react-router-dom'
-import Navbar from './components/Navbar.js'
-import Account from './pages/Account.js'
-import Home from './pages/Home.js'
-import Signin from './pages/Signin.js'
 import './App.css';
+import React from "react";
+import { Route, Routes } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import SignIn from "./pages/SignIn.jsx";
+import Dashboard from "./pages/Dashboard.jsx";
+import Meeting from "./pages/Meeting.jsx";
+import Schedule from "./pages/Schedule.jsx";
 import { AuthContextProvider } from './context/AuthContext.js';
 import Protected from './components/Protected.js'
 
 function App() {
   return (
-    <div>
+    <div className="App">
       <AuthContextProvider>
-        <Navbar />
+      <Navbar />
         <Routes>
-          <Route path ='/' element={<Home />} />
-          <Route path ='/signin' element={<Signin />} />
-          <Route path ='/account' element={<Protected> <Account /> </Protected>} />
+            <Route path="/" element={<SignIn />} />
+            <Route path="/dashboard" element={<Protected><Dashboard /></Protected>} /> 
+            <Route path="/meeting" element={<Protected><Meeting /></Protected>} />
+            <Route path="/schedule" element={<Protected><Schedule /></Protected>} />
         </Routes>
       </AuthContextProvider>
     </div>
